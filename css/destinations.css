@@ -1,0 +1,152 @@
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Loop variables */
+:nth-child(1) {
+	--n: 1;
+}
+
+:nth-child(2) {
+	--n: 2;
+}
+
+:nth-child(3) {
+	--n: 3;
+}
+
+:nth-child(4) {
+	--n: 4;
+}
+
+:nth-child(5) {
+	--n: 5;
+}
+
+/* End loop variables */
+
+main {
+	display: grid;
+	padding-top: 2rem;
+	place-items: center;
+	height: calc(100vh - 8rem);
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+	main {
+		display: grid;
+		place-items: center;
+		height: calc(100vh - 8rem);
+		overflow-x: hidden;
+		padding-top: 6rem;
+	}
+}
+
+/* Default styles for the entire system */
+.saturn {
+	z-index: 10;
+	width: 25vh;
+	height: 25vh;
+	display: grid;
+	border-radius: 50%;
+	place-items: center;
+	background-image: url("../img/saturn_texture.jpg");
+	background-repeat: repeat-x;
+	background-size: cover;
+	animation: 10s rotate infinite linear;
+	box-shadow: inset -10px -5px 10px black, inset 10px 5px 20px white;
+}
+
+@keyframes rotate {
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+/* Styles for all moon containers */
+[data-moon] {
+	display: grid;
+	grid-area: 1 / 1;
+	border-radius: 50%;
+	position: relative;
+	place-items: start center;
+	border: 3px solid darkgrey;
+	z-index: calc(5 - var(--n));
+	animation: rotation var(--period) infinite linear;
+	width: calc(100% + (30% + var(--size)) * var(--n));
+	height: calc(100% + (30% + var(--size)) * var(--n));
+}
+
+/* Styles for the circle at the top of the container */
+[data-moon]::after {
+	content: "";
+	border-radius: 50%;
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	background-size: cover;
+	top: calc(0% - var(--size) / 2);
+}
+
+[data-moon]:hover {
+	cursor: pointer;
+}
+
+/* Hover effect for selected moons */
+[data-moon]:hover::after {
+	scale: 1.1 1.1;
+	transition: scale 1s ease;
+}
+
+[data-moon]:hover {
+	border: 3px dashed #eeaa2e;
+	transition: border 1s ease;
+}
+
+[data-moon="enceladus"]::after {
+	background-image: url("../img/enceladus_texture.jpg");
+}
+
+[data-moon="iapetus"]::after {
+	background-image: url("../img/iapetus_texture.jpg");
+}
+
+[data-moon="titan"]::after {
+	background-image: url("../img/titan_texture.jpg");
+}
+
+[data-moon="mimas"]::after {
+	background-image: url("../img/mimas_texture.jpg");
+}
+
+[data-moon="rhea"]::after {
+	background-image: url("../img/rhea_texture.jpg");
+}
+
+/* Rotate moon container squares */
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+h2 {
+	/* text-transform: uppercase; */
+	border-left: 10px solid #eeaa2e;
+	padding-left: 10px;
+}
+
+body {
+	background-image: url("../img/tall-bg.jpg");
+	/* background-size: cover;
+	background-repeat: no-repeat; */
+}

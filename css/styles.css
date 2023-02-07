@@ -1,0 +1,503 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+
+/* CSS Reset (adapted from tutorial https://elad.medium.com/the-new-css-reset-53f41f13282e) */
+*,
+*::after,
+*::before {
+	all: unset;
+	display: revert;
+	box-sizing: border-box;
+	transition: all 0.1s ease-out;
+}
+
+/* End CSS Reset */
+
+/* Nord Color Palette */
+* {
+	transition: all 0.1s ease-out;
+
+	/* Polar Night */
+	--gunmetal: #262b35;
+	--gunmetal-2: #2c323d;
+	--charcoal: #3b4252ff;
+	--independence: #434c5eff;
+	--independence-2: #4c566aff;
+
+	/* Snow Storm */
+	--gainsboro: #d8dee9ff;
+	--alice-blue: #e5e9f0ff;
+	--alice-blue-2: #eceff4ff;
+
+	/* Aurora */
+	--fuzzy-wuzzy: #bf616aff;
+	--copper-crayola: #d08770ff;
+	--gold-crayola: #ebcb8bff;
+	--dark-sea-green: #a3be8cff;
+	--opera-mauve: #b48eadff;
+
+	/* Frost */
+	--opal: #8fbcbbff;
+	--dark-sky-blue: #88c0d0ff;
+	--air-superiority-blue: #81a1c1ff;
+	--glaucous: #5e81acff;
+}
+
+/* End Nord Color Palette */
+
+/* Theme Variables */
+:root {
+	--sun: revert;
+	--moon: none;
+
+	--body-bg: var(--gunmetal);
+	--nav-bg: var(--gunmetal-2);
+	--footer-bg: var(--gunmetal-2);
+	--footer-bg-2: var(--gunmetal);
+
+	--li-color: var(--gainsboro);
+	--switch-bg: var(--air-superiority-blue);
+	--switch-hover-bg: var(--glaucous);
+	--border-color: var(--glaucous);
+	--icon-hover-color: var(--gainsboro);
+	--footer-text-color: var(--gainsboro);
+
+	--card-body-bg: var(--charcoal);
+	--card-header-bg: var(--gunmetal-2);
+	--card-text-color: var(--gainsboro);
+}
+
+[theme="light"] {
+	--sun: none;
+	--moon: revert;
+
+	--body-bg: var(--gainsboro);
+	--nav-bg: var(--alice-blue-2);
+	--footer-bg: var(--alice-blue-2);
+	--footer-bg-2: var(--gainsboro);
+
+	--li-color: var(--gunmetal);
+	--border-color: var(--gunmetal);
+	--switch-bg: var(--air-superiority-blue);
+	--switch-hover-bg: var(--glaucous);
+	--icon-hover-color: var(--gunmetal);
+	--footer-text-color: var(--independence-2);
+
+	--card-body-bg: var(--alice-blue-2);
+	--card-header-bg: var(--alice-blue-2);
+	--card-text-color: var(--gunmetal);
+}
+
+/* End Theme Variables */
+
+/* Cards */
+.card-header {
+	background-color: var(--card-header-bg);
+}
+.bg-darkmode {
+	background-color: var(--card-body-bg);
+}
+
+.card-body {
+	background-color: var(--card-body-bg);
+	border-radius: 0px 0px 10px 10px;
+}
+
+.card-title,
+.card-text {
+	color: var(--card-text-color) !important;
+}
+
+/* End Cards */
+
+/* Background Classes */
+body {
+	background-color: var(--body-bg);
+	font-family: "", sans-serif;
+}
+
+.background-mode {
+	background-color: var(--body-bg);
+	color: var(--li-color);
+}
+
+/* Navbar classes */
+
+nav {
+	background-color: var(--nav-bg);
+	font-family: "Viga", sans-serif;
+}
+
+a {
+	cursor: pointer;
+}
+
+.nav-img {
+	transition: transform 1.5s ease;
+	cursor: pointer;
+}
+
+.nav-img:hover {
+	transform: rotate3d(1, 1, 1, 360deg) scale(1.2, 1.2);
+	transition: transform 1.5s ease;
+}
+
+.navbar-nav {
+	font-size: 1.2em;
+}
+
+.nav-link {
+	font-size: 1em;
+	cursor: pointer;
+}
+
+.nav-link:hover {
+	color: #e6c155 !important;
+	transition: color 1s ease;
+}
+
+.nav-link::before {
+	display: inline-block;
+	content: "<";
+	opacity: 0;
+}
+
+.nav-link::after {
+	display: inline-block;
+	content: ">";
+	opacity: 0;
+}
+
+.nav-link:hover::after {
+	opacity: 1;
+	transform: translateX(0.5vw) scale(1.2, 1.2);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nav-link:hover::before {
+	opacity: 1;
+	transform: translateX(-0.5vw) scale(1.2, 1.2);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.light-text {
+	color: var(--li-color) !important;
+}
+
+.light-text.active {
+	font-weight: bold;
+}
+
+.light-text.disabled {
+	opacity: 0.5;
+}
+
+/* Dark Mode Button Classes */
+
+.navbar-boggler {
+	border: 1px solid var(--li-color);
+	border-radius: 10px;
+	transition: transform 0.5s ease, box-shadow 0.5s ease;
+	margin-left: 0.35rem;
+}
+
+.navbar-boggler:hover {
+	transform: scale(0.9, 0.9);
+	box-shadow: inset -0.9px -0.9px 3px var(--li-color),
+		inset 0.9px 0.9px 3px var(--li-color);
+	transition: transform 0.5s ease, box-shadow 0.5s ease;
+	border: 1px solid var(--li-color);
+}
+
+.switch {
+	border: none;
+	background-color: var(--switch-bg);
+	margin-left: 1%;
+}
+
+.switch:hover {
+	background-color: var(--switch-hover-bg) !important;
+}
+
+.hide-sun {
+	display: var(--sun);
+}
+
+.hide-moon {
+	display: var(--moon);
+}
+
+@media screen and (min-width: 768px) {
+	nav {
+		border-radius: 1rem;
+	}
+}
+
+/*Fonts*/
+.fira {
+	font-family: "Fira Mono", sans-serif;
+}
+
+.prompt {
+	font-family: "Prompt", sans-serif;
+}
+
+.viga {
+	font-family: "Viga", sans-serif;
+}
+
+.comfortaa {
+	font-family: "Comfortaa", sans-serif;
+}
+
+/*End Fonts*/
+
+/* Header breakpoint*/
+
+@media (max-width: 1000px) {
+	header {
+		height: 100%;
+		width: 100%;
+		z-index: 10;
+		background-color: black;
+		background-size: cover;
+		background-image: url("https://wallpapercave.com/wp/wp3493599.jpg");
+	}
+}
+
+/* Curved border */
+.border-curvy {
+	background-color: var(--body-bg);
+	border-radius: 150% 150% 0px 0px;
+	height: 50px;
+	margin-top: -50px;
+	z-index: 20;
+}
+
+.border-curvy.footer,
+footer,
+footer > section {
+	background-color: var(--footer-bg);
+}
+
+footer > div {
+	background-color: var(--footer-bg-2);
+}
+
+footer span,
+footer h6 {
+	color: var(--footer-text-color);
+}
+
+.social-icons a i:hover {
+	color: var(--icon-hover-color);
+}
+
+/*Flashing css*/
+.blinking {
+	animation: blinker 1.25s linear infinite;
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+/*Element appearing animation */
+.transition-yellow {
+	color: white;
+}
+
+.transition-yellow.active {
+	background-color: #eeaa2e;
+	color: black;
+	transition: 1.5s all ease;
+}
+
+.reveal {
+	position: relative;
+	transform: translateY(150px);
+	opacity: 0;
+	transition: 1s all ease;
+}
+
+.reveal.active {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.active.fade-bottom {
+	animation: fade-bottom 1s ease-in;
+}
+
+.active.fade-left {
+	animation: fade-left 1s ease-in;
+}
+
+.active.fade-right {
+	animation: fade-right 1s ease-in;
+}
+
+.active.fade-away {
+	animation: fade-away 0.25s ease-in;
+}
+
+@keyframes fade-bottom {
+	0% {
+		transform: translateY(50px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-top {
+	0% {
+		transform: translateY(-50px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-left {
+	0% {
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-right {
+	0% {
+		transform: translateX(100px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-away {
+	0% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+}
+
+@media (max-width: 700px) {
+	@keyframes fade-left {
+		0% {
+			transform: translateX(100px);
+			opacity: 0;
+		}
+
+		100% {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+}
+
+@media screen and (max-width: 1100px) and (min-width: 910px) {
+	.nav-link {
+		font-size: 0.8em;
+	}
+}
+
+@media screen and (max-width: 910px) and (min-width: 850px) {
+	.nav-link {
+		font-size: 0.7em;
+	}
+}
+
+@media screen and (max-width: 850px) and (min-width: 765px) {
+	.nav-link {
+		font-size: 0.55em;
+	}
+}
+
+main {
+	height: 100px;
+}
+
+/* Footer classes */
+footer {
+	/* background-color: #eeaa2e; */
+	border: none;
+}
+
+#roverhead {
+	width: 100%;
+	/* background-color: #0e0d0b;
+	border: #ffeac4 2px solid;
+	border-radius: 100%; */
+}
+
+.box {
+	height: 100%;
+	width: auto;
+	position: relative;
+}
+
+.border-curved {
+	border-radius: 15px;
+}
+
+.footer-bottom {
+	margin-bottom: 7rem;
+}
+
+.alert {
+	padding: 20px;
+	color: white;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	animation: fade-top 0.15s ease-in;
+}
+
+.alert2 {
+	padding: 20px;
+	color: white;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	animation: fade-away 0.15s ease-in;
+}
+
+/* The close button */
+.closebtn {
+	margin-left: 15px;
+	color: white;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+	color: black;
+}
+
+.input-group-text {
+	border-radius: 0 5px 5px 0;
+}
